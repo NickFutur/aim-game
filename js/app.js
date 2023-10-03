@@ -3,6 +3,16 @@ const screens = document.querySelectorAll(".screen");
 const timeList = document.querySelector("#time-list");
 const timeEl = document.querySelector("#time");
 const board = document.querySelector("#board");
+const colors = [
+  "#16d9e3",
+  "#008B8B",
+  "#00FFFF",
+  "#00CED1",
+  "#7B68EE",
+  "#6495ED",
+  "#FFFFF0",
+  "#00FA9A",
+];
 
 let time = 0;
 let score = 0;
@@ -61,16 +71,24 @@ function createRandomCircle() {
   const { width, height } = board.getBoundingClientRect(); // выводим информацию об объекте в данном случае ширину и высоту элемента board
   const x = getRandomNumber(0, width - size);
   const y = getRandomNumber(0, height - size);
+  const color = getRandomColor();
 
   circle.classList.add("circle");
   circle.style.width = `${size}px`;
   circle.style.height = `${size}px`;
   circle.style.top = `${y}px`;
   circle.style.left = `${x}px`;
+  circle.style.backgroundColor = color;
+  console.log(color);
 
   board.append(circle);
 }
 
 function getRandomNumber(min, max) {
   return Math.round(Math.random() * (max - min) + min);
+}
+
+function getRandomColor() {
+  const index = Math.floor(Math.random() * colors.length);
+  return colors[index];
 }
